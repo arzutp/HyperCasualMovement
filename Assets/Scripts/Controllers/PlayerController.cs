@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] Camera cam;
+    [SerializeField] ObjectPool objectPool;
     [SerializeField] float playerSpeed = 5f;
     [SerializeField] PlayerModel playerModel;
     [SerializeField] Rigidbody rb;
@@ -47,4 +48,11 @@ public class PlayerController : MonoBehaviour
 
     }
     #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SpawnManager")){
+            objectPool.GetPoolObject();
+        }
+    }
 }
