@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerModel : MonoBehaviour
 {
     [SerializeField] Animator animator;
-    public void SetAttack(bool isRun)
+    public void SetRun(bool isRun)
     {
-        //animator.SetBool("Run",isRun);
+        animator.SetBool("Run",isRun);
     }
 
     public void SetAnimReset()

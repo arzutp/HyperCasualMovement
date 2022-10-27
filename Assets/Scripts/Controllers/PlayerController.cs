@@ -10,9 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerModel playerModel;
     [SerializeField] Rigidbody rb;
     Vector3 direction;
-    float force = 25f;
 
-    public void Initialie()
+    public void Start()
     {
         transform.position = Vector3.zero;
         playerModel.SetAnimReset();
@@ -26,8 +25,9 @@ public class PlayerController : MonoBehaviour
     #region movement
     private void playerMovement()
     {
-            if (Input.GetMouseButton(0))  //hareket ?slemleri
+            if (Input.GetMouseButton(0))  
             {
+                playerModel.SetRun(true);
                 Plane plane = new Plane(Vector3.up, transform.position);
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
                 if (offset.magnitude > 1f)
                     transform.LookAt(direction);
             }
+            if (Input.GetMouseButtonUp(0))
+            {
+                playerModel.SetRun(false);
+            }
+
     }
     #endregion
 }
