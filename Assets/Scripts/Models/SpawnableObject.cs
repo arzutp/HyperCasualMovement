@@ -7,10 +7,7 @@ public class SpawnableObject :  PooledObject
     [SerializeField] float upForce = 2f;
     [SerializeField] float downForce = 0.1f;
     [SerializeField] Rigidbody rb;
-    public void Start()
-    {
-        
-    }
+    [SerializeField] private float followSpeed;
 
     public override void OnObjectSpawn()
     {
@@ -22,16 +19,14 @@ public class SpawnableObject :  PooledObject
         Vector3 force = new Vector3(xForce, yForce, zForce);
         rb.velocity = force;
     }
-    [SerializeField] private float followSpeed;
 
     public void UpdateCubePosition(Transform followedCube, bool isFollowStart)
     {
-        StartCoroutine(StartFollowingToLastCubePosition(followedCube, isFollowStart));
+        StartCoroutine(StartFollowingToLastSpawnPosition(followedCube, isFollowStart));
     }
 
-    IEnumerator StartFollowingToLastCubePosition(Transform followedCube, bool isFollowStart)
+    IEnumerator StartFollowingToLastSpawnPosition(Transform followedCube, bool isFollowStart)
     {
-
         while (isFollowStart)
         {
             yield return new WaitForEndOfFrame();

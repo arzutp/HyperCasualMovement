@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8099129347635531261}
+  followSpeed: 30
 --- !u!1001 &4327986135670891304
 PrefabInstance:
   m_ObjectHideFlags: 0
