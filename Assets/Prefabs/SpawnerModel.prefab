@@ -112,6 +112,7 @@ MonoBehaviour:
   upForce: 1
   downForce: 0.1
   rb: {fileID: 1423753437397848222}
+  followSpeed: 30
 --- !u!54 &1423753437397848222
 Rigidbody:
   m_ObjectHideFlags: 0

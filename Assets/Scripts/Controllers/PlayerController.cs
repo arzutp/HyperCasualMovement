@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+
     [SerializeField] Camera cam;
     [SerializeField] ObjectPool objectPool;
     [SerializeField] float playerSpeed = 5f;
@@ -26,36 +27,41 @@ public class PlayerController : MonoBehaviour
     #region movement
     private void playerMovement()
     {
-            if (Input.GetMouseButton(0))  
-            {
-                playerModel.SetRun(true);
-                Plane plane = new Plane(Vector3.up, transform.position);
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Input.GetMouseButton(0))
+        {
+            playerModel.SetRun(true);
+            Plane plane = new Plane(Vector3.up, transform.position);
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-                if (plane.Raycast(ray, out var distance))
-                    direction = ray.GetPoint(distance);
+            if (plane.Raycast(ray, out var distance))
+                direction = ray.GetPoint(distance);
 
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(direction.x, 0f, direction.z), playerSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(direction.x, 0f, direction.z), playerSpeed * Time.deltaTime);
+            transform.LookAt(direction);
+            Vector3 offset = direction - transform.position;
+            if (offset.magnitude > 1f)
                 transform.LookAt(direction);
-                Vector3 offset = direction - transform.position;
-                if (offset.magnitude > 1f)
-                    transform.LookAt(direction);
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                playerModel.SetRun(false);
-            }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            playerModel.SetRun(false);
+        }
 
     }
     #endregion
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("SpawnManager")){
-            for (int i = 0; i < 5; i++)
-            {
-                objectPool.GetPoolObject();
-            }      
+        switch (other.tag)
+        {
+            case "SpawnManager":
+                for (int i = 0; i < 5; i++)
+                {
+                    objectPool.GetPoolObject();
+                }
+                break;
+
         }
+
     }
 }
