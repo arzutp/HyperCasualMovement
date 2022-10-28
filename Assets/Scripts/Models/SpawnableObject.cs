@@ -7,7 +7,7 @@ public class SpawnableObject :  PooledObject
     [SerializeField] float upForce = 1f;
     [SerializeField] float downForce = 0.1f;
     [SerializeField] Rigidbody rb;
-    public virtual void Init()
+    public void Start()
     {
         Dismiss();
     }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SpawnManager
   - Spawner
+  - PlayerFollower
   layers:
   - Default
   - TransparentFX
