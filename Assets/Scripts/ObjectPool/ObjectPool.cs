@@ -28,10 +28,13 @@ public class ObjectPool : MonoBehaviour
     public PooledObject GetPoolObject()
     {
         PooledObject spaw = spawnableObjects.Where(i => i.IsInUse == false).FirstOrDefault();
-        spaw.SetActive();
-        spaw.OnObjectSpawn();
-        spawnableObjects.Enqueue(spaw);
-        return spaw;
+        if (spaw != null) { 
+            spaw.SetActive();
+            spaw.OnObjectSpawn();
+            spawnableObjects.Enqueue(spaw);
+            return spaw;
+        }
+        return null;
     }
 
     public void EnqueueBall(PooledObject pooledObject)

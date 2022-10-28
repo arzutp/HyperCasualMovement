@@ -12,7 +12,7 @@ public class Stack : MonoBehaviour
     List<GameObject> playerFollowers = new List<GameObject>();
     private void Update()
     {
-        LerpMove(spawnableObjects);
+        //LerpMove(spawnableObjects);
     }
     private void OnTriggerEnter(Collider other)
     {

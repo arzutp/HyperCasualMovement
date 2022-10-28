@@ -48,10 +48,14 @@ public class PlayerController : MonoBehaviour
 
     }
     #endregion
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("SpawnManager")){
-            objectPool.GetPoolObject();
+            for (int i = 0; i < 5; i++)
+            {
+                objectPool.GetPoolObject();
+            }      
         }
     }
 }
